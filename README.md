@@ -2,6 +2,8 @@
 
 A simple python scanner designed to find open redirect vulnerabilities.
 
+**WARNING:** This is a work in progress!
+
 # Table of Contents
 
 - Installing
