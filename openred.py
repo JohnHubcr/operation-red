@@ -8,6 +8,7 @@
 import requests
 import argparse
 import colorama
+import sys
 try:
     from urllib import parse as urlparse
 except ImportError:
@@ -118,7 +119,7 @@ def scan(domains):
                             stream=True,
                             verify=True)
         status = resp.status_code
-        no_results = 'No open redirects found. :('
+        no_results = 'No open redirect found.'
         if resp.history:
             if resp.url.startswith("http://example.com"):
                 print("=" * 69)
