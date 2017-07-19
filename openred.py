@@ -13,7 +13,7 @@
 import requests
 import argparse
 import colorama
-import sys
+import re
 try:
     from urllib import parse as urlparse
 except ImportError:
@@ -67,7 +67,7 @@ def url_clean(self, url):
     return(url)
 
 
-def url_handler(self, url):
+def url_handler(url):
     """
     Parses URLs.
     """
@@ -85,7 +85,7 @@ def url_handler(self, url):
         # Site: http://example.com
         site = scheme + '://' + domain
         if site.endswith('/') == False:
-            site = site + '/'
+            site += '/'
 
     except IndexError:
         pass
@@ -108,13 +108,9 @@ def scan(domains):
     }
     for n in traverse(redirect):
         strip = repr(domains).replace("'", "")
-        print(
-            "Scanning: " + strip +
-            " with " + repr(n).replace("'", "")
-        )
-        target = url_handler(strip, strip)
-        resp = requests.get(target +
-                            repr(n).replace("'", ""),
+        target = url_handler(strip) + repr(n).replace("'", "")
+        print("Scanning: " + target)
+        resp = requests.get(target,
                             headers=headers,
                             timeout=1,
                             stream=True,
@@ -131,9 +127,9 @@ def scan(domains):
                     print(str(resp.status_code) + ": " + resp.url)
                     print("=" * 69)
             else:
-                print(symbols.negative + no_results)
+                pass
         else:
-            pass
+            print(symbols.negative + no_results)
 
 if args.url:
     '''
@@ -141,7 +137,6 @@ if args.url:
     '''
     try:
         domains = args.url
-        i = 1
         scan(domains)
     except requests.exceptions.ConnectionError:
         print(symbols.error + args.url + ": Connection refused!")
