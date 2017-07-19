@@ -112,7 +112,7 @@ def scan(domains):
         print("Scanning: " + target)
         resp = requests.get(target,
                             headers=headers,
-                            timeout=1,
+                            timeout=5,
                             stream=True,
                             verify=True)
         status = resp.status_code
@@ -140,8 +140,13 @@ if args.url:
         scan(domains)
     except requests.exceptions.ConnectionError:
         print(symbols.error + args.url + ": Connection refused!")
+        pass
     except requests.exceptions.Timeout:
-        print(symbols.error + args.url + ": Connection refused!")
+        print(symbols.error + args.url + ": Connection timed out!")
+        pass
+    except requests.exceptions.InvalidURL as e:
+        print(symbols.error + args.url + ": Invalid URL!")
+        pass
     except requests.exceptions.TooManyRedirects:
         print(symbols.error + "Bad URL!")
 elif args.txt:
@@ -153,9 +158,11 @@ elif args.txt:
     for i in traverse(domains):
         try:
             scan(i)
-        except requests.exceptions.ConnectionError:
+        except requests.exceptions.ConnectionError as e:
             continue
-        except requests.exceptions.Timeout:
+        except requests.exceptions.Timeout as e:
+            continue
+        except requests.exceptions.InvalidURL as e:
             continue
         except requests.exceptions.TooManyRedirects:
             print(symbols.error + "Bad URL!")
