@@ -18,7 +18,7 @@ except ImportError:
 redirect = [
     "//www.example.com/", "/%09/example.com",
     "/%5cexample.com", "//www.example.com/%2f%2e%2e",
-    "//www.example.com/%2e%2e"
+    "//www.example.com/%2e%2e", "<>//example.com"
 ]
 
 parser = argparse.ArgumentParser(
