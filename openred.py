@@ -8,6 +8,7 @@
 # - Scan params
 # - Allow user to specify payload(s)
 # - Add params (/?continue=payload)
+# - Replace IP payloads with correct IP.
 # ----------------------------------------------------------------------
 
 import requests
