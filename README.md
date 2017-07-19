@@ -1,4 +1,4 @@
-# Operation Red
+# Operation Red ![](https://api.travis-ci.org/EdOverflow/operation-red.svg?branch=master)
 
 A simple python scanner designed to find open redirect vulnerabilities.
 
