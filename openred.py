@@ -21,7 +21,8 @@ except ImportError:
 
 
 # Variables
-redirect = open('payloads.txt').read().splitlines()
+with open('payloads.txt') as f:
+    redirect = f.read().splitlines()
 
 parser = argparse.ArgumentParser(
     description="Open redirect vulnerability scanner.")
@@ -149,7 +150,8 @@ elif args.txt:
     Scans a list of targets from a
     text file.
     '''
-    domains = open(args.txt).read().splitlines()
+    with open(args.txt) as f:
+        domains = f.read().splitlines()
     for i in traverse(domains):
         try:
             scan(i)
