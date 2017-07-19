@@ -21,11 +21,7 @@ except ImportError:
 
 
 # Variables
-redirect = [
-    "//www.example.com/", "/%09/example.com",
-    "/%5cexample.com", "//www.example.com/%2f%2e%2e",
-    "//www.example.com/%2e%2e", "<>//example.com"
-]
+redirect = open('payloads.txt').read().splitlines()
 
 parser = argparse.ArgumentParser(
     description="Open redirect vulnerability scanner.")
