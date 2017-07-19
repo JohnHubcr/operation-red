@@ -3,6 +3,11 @@
 
 # ----------------------------------------------------------------------
 # Operation Red by EdOverflow
+#
+# TODO:
+# - Scan params
+# - Allow user to specify payload(s)
+# - Add params (/?continue=payload)
 # ----------------------------------------------------------------------
 
 import requests
