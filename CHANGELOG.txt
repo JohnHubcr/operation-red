@@ -1,0 +1,8 @@
+#---------------------------------------
+# Operation Red by EdOverflow
+#---------------------------------------
+
+v.1.0.0
+
++ Add parameter brute forcing.
++ Allow user to specify their own payload.
