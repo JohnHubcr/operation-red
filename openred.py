@@ -13,6 +13,8 @@
 # - Add random user agents.
 # - Fix the detection mechanism.
 # - Print logo.
+# - Replace www.victim.com with the scanned domain
+# - Detect redirection to non-http(s) protocols, like data: and javascript: (tip do this by simply matching if the input is the same as the Location header output)
 #----------------------------------------------------------------------
 
 # Modules
